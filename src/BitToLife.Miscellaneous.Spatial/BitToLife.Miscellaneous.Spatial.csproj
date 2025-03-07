@@ -1,19 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Title>BitToLife.Miscellaneous</Title>
+        <Authors>cykim64</Authors>
+        <Company>bit to life</Company>
+        <PackageProjectUrl>https://github.com/bit-to-life/miscellaneous</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DotSpatial.Projections" Version="4.0.656" />
-    <PackageReference Include="NetTopologySuite" Version="2.5.0" />
-    <PackageReference Include="NetTopologySuite.IO.Esri.Shapefile" Version="1.2.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="DotSpatial.Projections" Version="4.0.656" />
+        <PackageReference Include="NetTopologySuite" Version="2.5.0" />
+        <PackageReference Include="NetTopologySuite.IO.Esri.Shapefile" Version="1.2.0" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BitToLife.Miscellaneous\BitToLife.Miscellaneous.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\BitToLife.Miscellaneous\BitToLife.Miscellaneous.csproj" />
+    </ItemGroup>
 
 </Project>
