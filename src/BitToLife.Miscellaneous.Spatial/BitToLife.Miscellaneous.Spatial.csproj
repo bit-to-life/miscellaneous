@@ -13,6 +13,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <None Update="README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+    
+    <ItemGroup>
         <PackageReference Include="DotSpatial.Projections" Version="4.0.656" />
         <PackageReference Include="NetTopologySuite" Version="2.5.0" />
         <PackageReference Include="NetTopologySuite.IO.Esri.Shapefile" Version="1.2.0" />
