@@ -1,4 +1,5 @@
 ﻿using BitToLife.Miscellaneous;
+using System.Collections.Immutable;
 
 // CompressionUtil
 
@@ -38,7 +39,7 @@ DateTimeOffset kr2 = new(2024, 12, 14, 5, 34, 48, TimeSpan.FromHours(9));
 DateTimeOffset utc1 = kr1.KstToUtc();
 DateTimeOffset utc2 = kr2.KstToUtc(); // utc1과 utc2는 같은 값을 가집니다.
 DateTimeOffset kr3 = utc2.UtcToKst(); // kr2와 kr3은 같은 값을 가집니다.
-var months = DateTimeUtil.GetMonths(
+int months = DateTimeUtil.GetMonths(
     new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero),
     new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero)
 ); // 6
@@ -53,14 +54,14 @@ double d = MathUtil.RadianToDegree(r); // 180
 
 // PaginatedSet
 
-int[] items = Enumerable.Range(1, 100).ToArray();
+int[] items = [.. Enumerable.Range(1, 100)];
 int pageSize = 10;
 int totalItemCount = items.Length;
 int totalPageCount = PaginatedSet<int>.CalcTotalPageCount(items.Length, pageSize);
-PaginatedSet<int> set0 = PaginatedSet<int>.Create(items.Skip(0 * pageSize).Take(pageSize).ToArray(), totalItemCount, pageSize);
-PaginatedSet<int> set1 = PaginatedSet<int>.Create(items.Skip(1 * pageSize).Take(pageSize).ToArray(), totalItemCount, pageSize, 1);
-PaginatedSet<int> set2 = PaginatedSet<int>.Create(items.Skip(2 * pageSize).Take(pageSize).ToArray(), totalItemCount, pageSize, 2);
-PaginatedSet<int> lastSet = PaginatedSet<int>.Create(items.Skip(set0.LastPageIndex * pageSize).Take(pageSize).ToArray(), totalItemCount, pageSize, set0.LastPageIndex);
+PaginatedSet<int> set0 = PaginatedSet<int>.Create([.. items.Skip(0 * pageSize).Take(pageSize)], totalItemCount, pageSize);
+PaginatedSet<int> set1 = PaginatedSet<int>.Create([.. items.Skip(1 * pageSize).Take(pageSize)], totalItemCount, pageSize, 1);
+PaginatedSet<int> set2 = PaginatedSet<int>.Create([.. items.Skip(2 * pageSize).Take(pageSize)], totalItemCount, pageSize, 2);
+PaginatedSet<int> lastSet = PaginatedSet<int>.Create([.. items.Skip(set0.LastPageIndex * pageSize).Take(pageSize)], totalItemCount, pageSize, set0.LastPageIndex);
 PaginatedSet<int> emptySet = PaginatedSet<int>.CreateEmpty();
 
 // PhoneNumberUtil
@@ -73,7 +74,7 @@ string suffix = PhoneNumberUtil.Korean.Suffix(phoneNumber); // 5678
 // RandomUtil
 
 int randomNumber = RandomUtil.Next(1, 5); // 1 ~ 4 중 랜덤한 숫자
-int[] numbers = Enumerable.Range(1, 10).ToArray();
+int[] numbers = [.. Enumerable.Range(1, 10)];
 RandomUtil.Shuffle(numbers); // numbers 배열을 섞습니다.
 
 // SequentialNumberUtil

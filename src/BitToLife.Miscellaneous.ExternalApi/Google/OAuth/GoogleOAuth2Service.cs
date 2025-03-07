@@ -14,12 +14,12 @@ public sealed class GoogleOAuth2Service(HttpClient http) : GoogleApiBase(http)
             ["access_token"] = accessToken
         };
 
-        var url = QueryHelpers.AddQueryString(GET_USER_INFO, parameters);
-        var response = await Http.GetAsync(url, cancellationToken);
-        var isSuccessed = response.IsSuccessStatusCode;
-        var body = await response.Content.ReadAsStringAsync(cancellationToken);
+        string url = QueryHelpers.AddQueryString(GET_USER_INFO, parameters);
+        HttpResponseMessage response = await Http.GetAsync(url, cancellationToken);
+        bool isSuccessed = response.IsSuccessStatusCode;
+        string body = await response.Content.ReadAsStringAsync(cancellationToken);
 
-        var result = new GoogleApiResult<GoogleUserInfo>
+        GoogleApiResult<GoogleUserInfo> result = new()
         {
             IsSuccess = isSuccessed,
             Value = isSuccessed ? JsonSerializer.Deserialize<GoogleUserInfo>(body) : null,
