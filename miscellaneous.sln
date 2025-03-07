@@ -1,0 +1,95 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8BFE19E0-1EAA-47D2-8866-7C9C067BAB3C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BBDC8BC5-5843-4F27-A117-03EA25A094CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{04D234F4-F7DE-4753-961A-94265BC18679}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Miscellaneous", "samples\Sample.Miscellaneous\Sample.Miscellaneous.csproj", "{F4AF8526-D144-4A0E-A8B2-9FE2EC466DD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Miscellaneous.Cryptography", "samples\Sample.Miscellaneous.Cryptography\Sample.Miscellaneous.Cryptography.csproj", "{D941136B-6C36-4FB6-AE2B-70168A50ABE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Miscellaneous.Spatial", "samples\Sample.Miscellaneous.Spatial\Sample.Miscellaneous.Spatial.csproj", "{ACF42392-DBCB-488A-ADB7-26438017E47F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitToLife.Miscellaneous", "src\BitToLife.Miscellaneous\BitToLife.Miscellaneous.csproj", "{1564F120-D830-66B0-9A75-D62FD5BD92ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitToLife.Miscellaneous.Cryptography", "src\BitToLife.Miscellaneous.Cryptography\BitToLife.Miscellaneous.Cryptography.csproj", "{DAE1284C-8061-B28F-4C1E-50EE43D6CE44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitToLife.Miscellaneous.Database", "src\BitToLife.Miscellaneous.Database\BitToLife.Miscellaneous.Database.csproj", "{1216A147-86B8-D624-B3FD-711095C48CED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitToLife.Miscellaneous.ExternalApi", "src\BitToLife.Miscellaneous.ExternalApi\BitToLife.Miscellaneous.ExternalApi.csproj", "{6015C844-7A3A-F371-BFFE-0EDE8A029C0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitToLife.Miscellaneous.Image", "src\BitToLife.Miscellaneous.Image\BitToLife.Miscellaneous.Image.csproj", "{E15766BA-2C45-D234-6F5F-6A807C26A7FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitToLife.Miscellaneous.Spatial", "src\BitToLife.Miscellaneous.Spatial\BitToLife.Miscellaneous.Spatial.csproj", "{8E783CCA-BCFC-A67E-0ED5-65C3A7912004}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4AF8526-D144-4A0E-A8B2-9FE2EC466DD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4AF8526-D144-4A0E-A8B2-9FE2EC466DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4AF8526-D144-4A0E-A8B2-9FE2EC466DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4AF8526-D144-4A0E-A8B2-9FE2EC466DD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D941136B-6C36-4FB6-AE2B-70168A50ABE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D941136B-6C36-4FB6-AE2B-70168A50ABE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D941136B-6C36-4FB6-AE2B-70168A50ABE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D941136B-6C36-4FB6-AE2B-70168A50ABE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACF42392-DBCB-488A-ADB7-26438017E47F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACF42392-DBCB-488A-ADB7-26438017E47F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACF42392-DBCB-488A-ADB7-26438017E47F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACF42392-DBCB-488A-ADB7-26438017E47F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1564F120-D830-66B0-9A75-D62FD5BD92ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1564F120-D830-66B0-9A75-D62FD5BD92ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1564F120-D830-66B0-9A75-D62FD5BD92ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1564F120-D830-66B0-9A75-D62FD5BD92ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAE1284C-8061-B28F-4C1E-50EE43D6CE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAE1284C-8061-B28F-4C1E-50EE43D6CE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAE1284C-8061-B28F-4C1E-50EE43D6CE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAE1284C-8061-B28F-4C1E-50EE43D6CE44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1216A147-86B8-D624-B3FD-711095C48CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1216A147-86B8-D624-B3FD-711095C48CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1216A147-86B8-D624-B3FD-711095C48CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1216A147-86B8-D624-B3FD-711095C48CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6015C844-7A3A-F371-BFFE-0EDE8A029C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6015C844-7A3A-F371-BFFE-0EDE8A029C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6015C844-7A3A-F371-BFFE-0EDE8A029C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6015C844-7A3A-F371-BFFE-0EDE8A029C0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E15766BA-2C45-D234-6F5F-6A807C26A7FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E15766BA-2C45-D234-6F5F-6A807C26A7FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E15766BA-2C45-D234-6F5F-6A807C26A7FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E15766BA-2C45-D234-6F5F-6A807C26A7FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E783CCA-BCFC-A67E-0ED5-65C3A7912004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E783CCA-BCFC-A67E-0ED5-65C3A7912004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E783CCA-BCFC-A67E-0ED5-65C3A7912004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E783CCA-BCFC-A67E-0ED5-65C3A7912004}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F4AF8526-D144-4A0E-A8B2-9FE2EC466DD4} = {04D234F4-F7DE-4753-961A-94265BC18679}
+		{D941136B-6C36-4FB6-AE2B-70168A50ABE4} = {04D234F4-F7DE-4753-961A-94265BC18679}
+		{ACF42392-DBCB-488A-ADB7-26438017E47F} = {04D234F4-F7DE-4753-961A-94265BC18679}
+		{1564F120-D830-66B0-9A75-D62FD5BD92ED} = {BBDC8BC5-5843-4F27-A117-03EA25A094CC}
+		{DAE1284C-8061-B28F-4C1E-50EE43D6CE44} = {BBDC8BC5-5843-4F27-A117-03EA25A094CC}
+		{1216A147-86B8-D624-B3FD-711095C48CED} = {BBDC8BC5-5843-4F27-A117-03EA25A094CC}
+		{6015C844-7A3A-F371-BFFE-0EDE8A029C0B} = {BBDC8BC5-5843-4F27-A117-03EA25A094CC}
+		{E15766BA-2C45-D234-6F5F-6A807C26A7FF} = {BBDC8BC5-5843-4F27-A117-03EA25A094CC}
+		{8E783CCA-BCFC-A67E-0ED5-65C3A7912004} = {BBDC8BC5-5843-4F27-A117-03EA25A094CC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE2021C6-1EA2-447D-A748-B9CE762EB703}
+	EndGlobalSection
+EndGlobal
