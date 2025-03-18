@@ -10,6 +10,7 @@
         <Company>bit to life</Company>
         <PackageProjectUrl>https://github.com/bit-to-life/miscellaneous</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <VersionPrefix>1.1.0</VersionPrefix>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
     </ItemGroup>
 
     <ItemGroup>

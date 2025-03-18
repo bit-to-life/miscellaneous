@@ -10,6 +10,7 @@
         <Company>bit to life</Company>
         <PackageProjectUrl>https://github.com/bit-to-life/miscellaneous</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <VersionPrefix>1.1.0</VersionPrefix>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,11 +21,11 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="9.0.2" />
-        <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="9.0.2" />
-        <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.2" />
-        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.6.0" />
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.6.0" />
+        <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="9.0.3" />
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="9.0.3" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.3" />
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.6.1" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.6.1" />
     </ItemGroup>
 
 </Project>

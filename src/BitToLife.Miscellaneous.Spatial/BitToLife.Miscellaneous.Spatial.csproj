@@ -10,6 +10,7 @@
         <Company>bit to life</Company>
         <PackageProjectUrl>https://github.com/bit-to-life/miscellaneous</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <VersionPrefix>1.1.0</VersionPrefix>
     </PropertyGroup>
 
     <ItemGroup>
@@ -21,7 +22,7 @@
     
     <ItemGroup>
         <PackageReference Include="DotSpatial.Projections" Version="4.0.656" />
-        <PackageReference Include="NetTopologySuite" Version="2.5.0" />
+        <PackageReference Include="NetTopologySuite" Version="2.6.0" />
         <PackageReference Include="NetTopologySuite.IO.Esri.Shapefile" Version="1.2.0" />
     </ItemGroup>
 
