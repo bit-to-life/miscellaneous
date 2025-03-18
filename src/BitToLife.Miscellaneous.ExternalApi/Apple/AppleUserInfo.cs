@@ -14,11 +14,11 @@ public sealed class AppleUserInfo
 
     public string? FamilyName { get; set; }
 
-    public static AppleUserInfo GetUserInfo(ClaimsPrincipal claimsPrincipal, string? givenName, string? familyName)
+    public static AppleUserInfo GetUserInfo(ClaimsPrincipal claimsPrincipal, string? givenName = null, string? familyName = null)
     {
         string? id = claimsPrincipal.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
         string? email = claimsPrincipal.Claims.Single(c => c.Type == ClaimTypes.Email).Value;
-        string? name = familyName is not null && givenName is not null ? $"{familyName} {givenName}".Trim() : email[..email.IndexOf('@')];
+        string? name = familyName is not null && givenName is not null ? $"{givenName} {familyName}".Trim() : email[..email.IndexOf('@')];
 
         AppleUserInfo userInfo = new()
         {

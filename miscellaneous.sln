@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitToLife.Miscellaneous.Ima
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitToLife.Miscellaneous.Spatial", "src\BitToLife.Miscellaneous.Spatial\BitToLife.Miscellaneous.Spatial.csproj", "{8E783CCA-BCFC-A67E-0ED5-65C3A7912004}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Miscellaneous.ExternalApi", "samples\Sample.Miscellaneous.ExternalApi\Sample.Miscellaneous.ExternalApi.csproj", "{D5C5E2CA-52A0-4CF4-9903-3913844A995A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{8E783CCA-BCFC-A67E-0ED5-65C3A7912004}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E783CCA-BCFC-A67E-0ED5-65C3A7912004}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E783CCA-BCFC-A67E-0ED5-65C3A7912004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5C5E2CA-52A0-4CF4-9903-3913844A995A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5C5E2CA-52A0-4CF4-9903-3913844A995A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5C5E2CA-52A0-4CF4-9903-3913844A995A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5C5E2CA-52A0-4CF4-9903-3913844A995A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +94,7 @@ Global
 		{6015C844-7A3A-F371-BFFE-0EDE8A029C0B} = {BBDC8BC5-5843-4F27-A117-03EA25A094CC}
 		{E15766BA-2C45-D234-6F5F-6A807C26A7FF} = {BBDC8BC5-5843-4F27-A117-03EA25A094CC}
 		{8E783CCA-BCFC-A67E-0ED5-65C3A7912004} = {BBDC8BC5-5843-4F27-A117-03EA25A094CC}
+		{D5C5E2CA-52A0-4CF4-9903-3913844A995A} = {04D234F4-F7DE-4753-961A-94265BC18679}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE2021C6-1EA2-447D-A748-B9CE762EB703}
