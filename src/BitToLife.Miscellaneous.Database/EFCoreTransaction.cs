@@ -17,7 +17,7 @@ public sealed class EFCoreTransaction(DbContext dbContext)
     /// </summary>
     /// <param name="operation">트랜잭션 안에서 수행할 작업</param>
     /// <param name="cancellationToken"></param>
-    public async Task ExecuteAsync(Func<IDbContextTransaction, CancellationToken, Task<bool>> operation, CancellationToken cancellationToken = default)
+    public async Task ExecuteAsync(Func<IDbContextTransaction, CancellationToken, Task> operation, CancellationToken cancellationToken = default)
     {
         await _database.CreateExecutionStrategy().ExecuteAsync(
             async (cancellationToken) =>
