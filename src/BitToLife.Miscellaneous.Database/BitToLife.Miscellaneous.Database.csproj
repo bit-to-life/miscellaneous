@@ -10,7 +10,7 @@
         <Company>bit to life</Company>
         <PackageProjectUrl>https://github.com/bit-to-life/miscellaneous</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <VersionPrefix>1.1.1</VersionPrefix>
+        <VersionPrefix>1.2.0</VersionPrefix>
     </PropertyGroup>
 
     <ItemGroup>
