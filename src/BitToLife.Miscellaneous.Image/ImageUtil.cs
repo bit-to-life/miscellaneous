@@ -140,6 +140,11 @@ public static class ImageUtil
                     image.Mutate(x => x.Rotate(builder.Rotate.Degree));
                 }
 
+                if (builder.Crop is not null)
+                {
+                    image.Mutate(x => x.Crop(new Rectangle(builder.Crop.Left, builder.Crop.Top, builder.Crop.Width, builder.Crop.Height)));
+                }
+
                 bool isTempFile = string.IsNullOrWhiteSpace(path);
                 string outputPath = isTempFile ? Path.GetTempFileName() : path!;
 

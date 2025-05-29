@@ -12,6 +12,8 @@ public sealed record ImageBuilder
 
     internal RotateOptions? Rotate { get; set; }
 
+    internal CropOptions? Crop { get; set; }
+
     internal IImageEncoder? Encoder { get; set; }
 
     internal Func<FileStream, CancellationToken, Task>? OnCompletedAsync { get; set; }
@@ -31,6 +33,14 @@ public sealed record ImageBuilder
     public sealed record RotateOptions
     {
         public float Degree { get; init; }
+    }
+
+    public sealed record CropOptions
+    {
+        public int Left { get; init; }
+        public int Top { get; init; }
+        public int Width { get; init; }
+        public int Height { get; init; }
     }
 
     public sealed record JpegEncodeOptions

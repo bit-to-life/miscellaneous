@@ -56,6 +56,29 @@ public static class ImageBuilderExtensions
         return builder;
     }
 
+    public static ImageBuilder SetCrop(this ImageBuilder builder, int left, int top, int width, int height)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegative(left);
+        ArgumentOutOfRangeException.ThrowIfNegative(top);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(width);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(height);
+
+        if (builder.Crop is not null)
+        {
+            throw new InvalidOperationException("Crop is already set.");
+        }
+
+        builder.Crop = new ImageBuilder.CropOptions
+        {
+            Left = left,
+            Top = top,
+            Width = width,
+            Height = height
+        };
+        
+        return builder;
+    }
+
     public static ImageBuilder SetJpegEncoder(this ImageBuilder builder, int quality = 75)
     {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(quality, 100);
