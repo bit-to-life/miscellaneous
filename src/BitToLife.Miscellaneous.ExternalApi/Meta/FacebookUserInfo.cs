@@ -59,15 +59,15 @@ public sealed record FacebookUserInfo
         FacebookUserInfo userInfo = new()
         {
             id = claimsPrincipal.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value,
-            first_name = claimsPrincipal.Claims.Single(c => c.Type == ClaimTypes.GivenName).Value,
-            last_name = claimsPrincipal.Claims.Single(c => c.Type == ClaimTypes.Surname).Value,
-            name = claimsPrincipal.Claims.Single(c => c.Type == "name").Value,
-            email = claimsPrincipal.Claims.Single(c => c.Type == ClaimTypes.Email).Value,
+            first_name = claimsPrincipal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.GivenName)?.Value,
+            last_name = claimsPrincipal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.Surname)?.Value,
+            name = claimsPrincipal.Claims.SingleOrDefault(c => c.Type == "name")?.Value,
+            email = claimsPrincipal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.Email)?.Value,
             picture = new Picture
             {
                 data = new Picture.Data
                 {
-                    url = claimsPrincipal.Claims.Single(c => c.Type == "picture").Value
+                    url = claimsPrincipal.Claims.SingleOrDefault(c => c.Type == "picture")?.Value
                 }
             }
         };
