@@ -22,7 +22,12 @@ public static class ImageUtil
         };
     }
 
-    internal static (int Width, int Height) GetContainSize(int imageWidth, int imageHeight, int maxWidth, int maxHeight)
+    internal static (int Width, int Height) GetContainSize(
+        int imageWidth,
+        int imageHeight,
+        int maxWidth,
+        int maxHeight
+    )
     {
         float targetRatio = maxWidth / (float)(maxWidth + maxHeight);
         float imageRatio = imageWidth / (float)(imageWidth + imageHeight);
@@ -39,7 +44,12 @@ public static class ImageUtil
         return (maxWidth, maxHeight);
     }
 
-    internal static (int Width, int Height, int X, int Y) GetCoverSize(int imageWidth, int imageHeight, int maxWidth, int maxHeight)
+    internal static (int Width, int Height, int X, int Y) GetCoverSize(
+        int imageWidth,
+        int imageHeight,
+        int maxWidth,
+        int maxHeight
+    )
     {
         float imageAspectRatio = imageHeight / (float)imageWidth;
         float targetAspectRatio = maxHeight / (float)maxWidth;
@@ -67,9 +77,17 @@ public static class ImageUtil
         return (coverWidth, coverHeight, x, y);
     }
 
-    public static async Task<(int Width, int Height)> GetSizeAsync(Stream imageStream, CancellationToken cancellationToken = default)
+    public static async Task<(int Width, int Height)> GetSizeAsync(
+        Stream imageStream,
+        CancellationToken cancellationToken = default
+    )
     {
-        using (SixLabors.ImageSharp.Image image = await SixLabors.ImageSharp.Image.LoadAsync(imageStream, cancellationToken))
+        using (
+            SixLabors.ImageSharp.Image image = await SixLabors.ImageSharp.Image.LoadAsync(
+                imageStream,
+                cancellationToken
+            )
+        )
         {
             return (image.Width, image.Height);
         }
@@ -85,24 +103,40 @@ public static class ImageUtil
 
     public static ImageBuilder CreateBuilder(Stream source)
     {
-        return new ImageBuilder
-        {
-            Source = source
-        };
+        return new ImageBuilder { Source = source };
     }
 
-    public static async Task SaveAsync(this ImageBuilder builder, string? path = null, CancellationToken cancellationToken = default)
+    private static async Task<Stream> SaveAsync(
+        string path,
+        ImageBuilder builder,
+        CancellationToken cancellationToken = default
+    )
     {
         using (builder.Source)
         {
             builder.Source.Position = 0;
-            using (SixLabors.ImageSharp.Image image = await SixLabors.ImageSharp.Image.LoadAsync(builder.Source, cancellationToken))
+            using (
+                SixLabors.ImageSharp.Image image = await SixLabors.ImageSharp.Image.LoadAsync(
+                    builder.Source,
+                    cancellationToken
+                )
+            )
             {
                 if (builder.Orientation?.AutoFix ?? false)
                 {
-                    if (image.Metadata.ExifProfile?.TryGetValue(ExifTag.Orientation, out IExifValue<ushort>? orientation) ?? false)
+                    if (
+                        image.Metadata.ExifProfile?.TryGetValue(
+                            ExifTag.Orientation,
+                            out IExifValue<ushort>? orientation
+                        ) ?? false
+                    )
                     {
-                        if (ushort.TryParse(orientation!.Value.ToString(), out ushort orientationValue))
+                        if (
+                            ushort.TryParse(
+                                orientation!.Value.ToString(),
+                                out ushort orientationValue
+                            )
+                        )
                         {
                             RotateMode rotateMode = GetRotateMode(orientationValue);
                             if (rotateMode != RotateMode.None)
@@ -122,12 +156,25 @@ public static class ImageUtil
                     switch (builder.Resize.SizeType)
                     {
                         case SizeType.Contain:
-                            (int Width, int Height) = GetContainSize(image.Width, image.Height, maxWidth, maxHeight);
+                            (int Width, int Height) = GetContainSize(
+                                image.Width,
+                                image.Height,
+                                maxWidth,
+                                maxHeight
+                            );
                             image.Mutate(i => i.Resize(Width, Height));
                             break;
                         case SizeType.Cover:
-                            (int CoverWidth, int CoverHeight, int X, int Y) = GetCoverSize(image.Width, image.Height, maxWidth, maxHeight);
-                            image.Mutate(i => i.Resize(CoverWidth, CoverHeight).Crop(new Rectangle(X, Y, maxWidth, maxHeight)));
+                            (int CoverWidth, int CoverHeight, int X, int Y) = GetCoverSize(
+                                image.Width,
+                                image.Height,
+                                maxWidth,
+                                maxHeight
+                            );
+                            image.Mutate(i =>
+                                i.Resize(CoverWidth, CoverHeight)
+                                    .Crop(new Rectangle(X, Y, maxWidth, maxHeight))
+                            );
                             break;
                         case SizeType.Fill:
                             image.Mutate(i => i.Resize(maxWidth, maxHeight));
@@ -142,27 +189,60 @@ public static class ImageUtil
 
                 if (builder.Crop is not null)
                 {
-                    image.Mutate(x => x.Crop(new Rectangle(builder.Crop.Left, builder.Crop.Top, builder.Crop.Width, builder.Crop.Height)));
+                    image.Mutate(x =>
+                        x.Crop(
+                            new Rectangle(
+                                builder.Crop.Left,
+                                builder.Crop.Top,
+                                builder.Crop.Width,
+                                builder.Crop.Height
+                            )
+                        )
+                    );
                 }
 
-                bool isTempFile = string.IsNullOrWhiteSpace(path);
-                string outputPath = isTempFile ? Path.GetTempFileName() : path!;
+                FileStream dest = new(path, FileMode.Create, FileAccess.ReadWrite);
+                await image.SaveAsync(
+                    dest,
+                    builder.Encoder ?? new JpegEncoder(),
+                    cancellationToken
+                );
 
-                using (FileStream dest = new(outputPath, FileMode.Create, FileAccess.ReadWrite))
+                if (builder.OnCompletedAsync is not null)
                 {
-                    await image.SaveAsync(dest, builder.Encoder ?? new JpegEncoder(), cancellationToken);
-
-                    if (builder.OnCompletedAsync is not null)
-                    {
-                        await builder.OnCompletedAsync.Invoke(dest, cancellationToken);
-                    }
+                    await builder.OnCompletedAsync.Invoke(dest, cancellationToken);
                 }
 
-                if (isTempFile)
-                {
-                    File.Delete(outputPath);
-                }
+                return dest;
             }
         }
+    }
+
+    public static async Task SaveAsync(
+        this ImageBuilder builder,
+        string? path = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        bool isTempFile = string.IsNullOrWhiteSpace(path);
+        string outputPath = isTempFile ? Path.GetTempFileName() : path!;
+
+        using (Stream _ = await SaveAsync(outputPath, builder, cancellationToken)) { }
+
+        if (isTempFile)
+        {
+            File.Delete(outputPath);
+        }
+    }
+
+    public static async Task<Stream> SaveToStreamAsync(
+        this ImageBuilder builder,
+        CancellationToken cancellationToken = default
+    )
+    {
+        Stream stream = await SaveAsync(Path.GetTempFileName(), builder, cancellationToken);
+        stream.Position = 0;
+
+        return stream;
     }
 }
