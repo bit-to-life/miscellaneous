@@ -1,6 +1,4 @@
-﻿using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Jpeg;
-using SixLabors.ImageSharp.Metadata.Profiles.Exif;
+﻿using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
 
 namespace BitToLife.Miscellaneous.Image;
@@ -122,83 +120,9 @@ public static class ImageUtil
                 )
             )
             {
-                if (builder.Orientation?.AutoFix ?? false)
+                foreach (IImageBuilderTask task in builder.Tasks)
                 {
-                    if (
-                        image.Metadata.ExifProfile?.TryGetValue(
-                            ExifTag.Orientation,
-                            out IExifValue<ushort>? orientation
-                        ) ?? false
-                    )
-                    {
-                        if (
-                            ushort.TryParse(
-                                orientation!.Value.ToString(),
-                                out ushort orientationValue
-                            )
-                        )
-                        {
-                            RotateMode rotateMode = GetRotateMode(orientationValue);
-                            if (rotateMode != RotateMode.None)
-                            {
-                                image.Mutate(x => x.Rotate(rotateMode));
-                                image.Metadata.ExifProfile?.RemoveValue(ExifTag.Orientation);
-                            }
-                        }
-                    }
-                }
-
-                if (builder.Resize is not null)
-                {
-                    int maxWidth = builder.Resize.MaxWidth;
-                    int maxHeight = builder.Resize.MaxHeight;
-
-                    switch (builder.Resize.SizeType)
-                    {
-                        case SizeType.Contain:
-                            (int Width, int Height) = GetContainSize(
-                                image.Width,
-                                image.Height,
-                                maxWidth,
-                                maxHeight
-                            );
-                            image.Mutate(i => i.Resize(Width, Height));
-                            break;
-                        case SizeType.Cover:
-                            (int CoverWidth, int CoverHeight, int X, int Y) = GetCoverSize(
-                                image.Width,
-                                image.Height,
-                                maxWidth,
-                                maxHeight
-                            );
-                            image.Mutate(i =>
-                                i.Resize(CoverWidth, CoverHeight)
-                                    .Crop(new Rectangle(X, Y, maxWidth, maxHeight))
-                            );
-                            break;
-                        case SizeType.Fill:
-                            image.Mutate(i => i.Resize(maxWidth, maxHeight));
-                            break;
-                    }
-                }
-
-                if (builder.Rotate is not null)
-                {
-                    image.Mutate(x => x.Rotate(builder.Rotate.Degree));
-                }
-
-                if (builder.Crop is not null)
-                {
-                    image.Mutate(x =>
-                        x.Crop(
-                            new Rectangle(
-                                builder.Crop.Left,
-                                builder.Crop.Top,
-                                builder.Crop.Width,
-                                builder.Crop.Height
-                            )
-                        )
-                    );
+                    task.Execute(image);
                 }
 
                 FileStream dest = new(path, FileMode.Create, FileAccess.ReadWrite);

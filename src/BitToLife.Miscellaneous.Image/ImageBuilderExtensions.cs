@@ -6,76 +6,65 @@ namespace BitToLife.Miscellaneous.Image;
 
 public static class ImageBuilderExtensions
 {
-    public static ImageBuilder SetOrientation(this ImageBuilder builder, bool autoFix = true)
+    public static ImageBuilder AddOrientationTask(this ImageBuilder builder, bool autoFix = true)
     {
-        if (builder.Orientation is not null)
-        {
-            throw new InvalidOperationException("Orientation is already set.");
-        }
-
-        builder.Orientation = new ImageBuilder.OrientationOptions
-        {
-            AutoFix = autoFix
-        };
+        builder.AddTask(new ImageBuilder.OrientationTask { AutoFix = autoFix });
 
         return builder;
     }
 
-    public static ImageBuilder SetResize(this ImageBuilder builder, int maxWidth, int maxHeight, SizeType sizeType)
+    public static ImageBuilder AddResizeTask(
+        this ImageBuilder builder,
+        int maxWidth,
+        int maxHeight,
+        SizeType sizeType
+    )
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maxWidth);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maxHeight);
 
-        if (builder.Resize is not null)
-        {
-            throw new InvalidOperationException("Resize is already set.");
-        }
-
-        builder.Resize = new ImageBuilder.ResizeOptions
-        {
-            MaxWidth = maxWidth,
-            MaxHeight = maxHeight,
-            SizeType = sizeType
-        };
+        builder.AddTask(
+            new ImageBuilder.ResizeTask
+            {
+                MaxWidth = maxWidth,
+                MaxHeight = maxHeight,
+                SizeType = sizeType,
+            }
+        );
 
         return builder;
     }
 
-    public static ImageBuilder SetRotate(this ImageBuilder builder, float degree)
+    public static ImageBuilder AddRotateTask(this ImageBuilder builder, float degree)
     {
-        if (builder.Rotate is not null)
-        {
-            throw new InvalidOperationException("Rotate is already set.");
-        }
-
-        builder.Rotate = new ImageBuilder.RotateOptions
-        {
-            Degree = degree
-        };
+        builder.AddTask(new ImageBuilder.RotateTask { Degree = degree });
 
         return builder;
     }
 
-    public static ImageBuilder SetCrop(this ImageBuilder builder, int left, int top, int width, int height)
+    public static ImageBuilder AddCropTask(
+        this ImageBuilder builder,
+        int left,
+        int top,
+        int width,
+        int height
+    )
     {
         ArgumentOutOfRangeException.ThrowIfNegative(left);
         ArgumentOutOfRangeException.ThrowIfNegative(top);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(width);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(height);
 
-        if (builder.Crop is not null)
-        {
-            throw new InvalidOperationException("Crop is already set.");
-        }
+        builder.AddTask(
+            new ImageBuilder.CropTask
+            {
+                Left = left,
+                Top = top,
+                Width = width,
+                Height = height,
+            }
+        );
 
-        builder.Crop = new ImageBuilder.CropOptions
-        {
-            Left = left,
-            Top = top,
-            Width = width,
-            Height = height
-        };
-        
         return builder;
     }
 
@@ -89,15 +78,17 @@ public static class ImageBuilderExtensions
             throw new InvalidOperationException("Encoder is already set.");
         }
 
-        builder.Encoder = new JpegEncoder
-        {
-            Quality = quality
-        };
+        builder.Encoder = new JpegEncoder { Quality = quality };
 
         return builder;
     }
 
-    public static ImageBuilder SetPngEncoder(this ImageBuilder builder, PngColorType? colorType = null, PngBitDepth? bitDepth = null, PngInterlaceMode? interlaceMode = null)
+    public static ImageBuilder SetPngEncoder(
+        this ImageBuilder builder,
+        PngColorType? colorType = null,
+        PngBitDepth? bitDepth = null,
+        PngInterlaceMode? interlaceMode = null
+    )
     {
         if (builder.Encoder is not null)
         {
@@ -106,15 +97,24 @@ public static class ImageBuilderExtensions
 
         builder.Encoder = new PngEncoder
         {
-            ColorType = colorType.HasValue ? (SixLabors.ImageSharp.Formats.Png.PngColorType)colorType : null,
-            BitDepth = bitDepth.HasValue ? (SixLabors.ImageSharp.Formats.Png.PngBitDepth)bitDepth : null,
-            InterlaceMethod = interlaceMode.HasValue ? (SixLabors.ImageSharp.Formats.Png.PngInterlaceMode)interlaceMode : null
+            ColorType = colorType.HasValue
+                ? (SixLabors.ImageSharp.Formats.Png.PngColorType)colorType
+                : null,
+            BitDepth = bitDepth.HasValue
+                ? (SixLabors.ImageSharp.Formats.Png.PngBitDepth)bitDepth
+                : null,
+            InterlaceMethod = interlaceMode.HasValue
+                ? (SixLabors.ImageSharp.Formats.Png.PngInterlaceMode)interlaceMode
+                : null,
         };
 
         return builder;
     }
 
-    public static ImageBuilder SetBmpEncoder(this ImageBuilder builder, BmpBitsPerPixel? bitsPerPixel = null)
+    public static ImageBuilder SetBmpEncoder(
+        this ImageBuilder builder,
+        BmpBitsPerPixel? bitsPerPixel = null
+    )
     {
         if (builder.Encoder is not null)
         {
@@ -123,13 +123,18 @@ public static class ImageBuilderExtensions
 
         builder.Encoder = new BmpEncoder
         {
-            BitsPerPixel = bitsPerPixel.HasValue ? (SixLabors.ImageSharp.Formats.Bmp.BmpBitsPerPixel)bitsPerPixel : null
+            BitsPerPixel = bitsPerPixel.HasValue
+                ? (SixLabors.ImageSharp.Formats.Bmp.BmpBitsPerPixel)bitsPerPixel
+                : null,
         };
 
         return builder;
     }
 
-    public static ImageBuilder SetOnCompleted(this ImageBuilder builder, Func<Stream, CancellationToken, Task>? onCompletedAsync = null)
+    public static ImageBuilder SetOnCompleted(
+        this ImageBuilder builder,
+        Func<Stream, CancellationToken, Task>? onCompletedAsync = null
+    )
     {
         if (builder.OnCompletedAsync is not null)
         {
