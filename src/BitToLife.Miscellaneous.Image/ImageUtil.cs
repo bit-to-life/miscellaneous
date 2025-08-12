@@ -142,7 +142,7 @@ public static class ImageUtil
         }
     }
 
-    public static async Task SaveAsync(
+    public static async Task<long> SaveAsync(
         this ImageBuilder builder,
         string? path = null,
         CancellationToken cancellationToken = default
@@ -151,12 +151,16 @@ public static class ImageUtil
         bool isTempFile = string.IsNullOrWhiteSpace(path);
         string outputPath = isTempFile ? Path.GetTempFileName() : path!;
 
-        using (Stream _ = await SaveAsync(outputPath, builder, cancellationToken)) { }
+        using Stream dest = await SaveAsync(outputPath, builder, cancellationToken);
+        long length = dest.Length;
+        dest.Close();
 
         if (isTempFile)
         {
             File.Delete(outputPath);
         }
+
+        return length;
     }
 
     public static async Task<Stream> SaveToStreamAsync(
