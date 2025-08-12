@@ -14,7 +14,7 @@ ImageBuilder builder = ImageUtil
         }
     );
 
-await builder.SaveAsync("result.png");
+long length = await builder.SaveAsync("result.png");
 
 Console.WriteLine("Image processing completed successfully.");
 Console.WriteLine("Press any key to exit...");

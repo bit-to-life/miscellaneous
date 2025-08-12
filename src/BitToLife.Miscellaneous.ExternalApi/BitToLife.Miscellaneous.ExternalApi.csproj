@@ -22,8 +22,8 @@
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="9.0.8" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="9.0.8" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.8" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.13.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.13.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.13.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.13.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitToLife.Miscellaneous.Database\BitToLife.Miscellaneous.Database.csproj" />
